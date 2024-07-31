@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Save Sascha</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <audio id="background-music" loop>
+        <source src="background-music.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <div class="container">
+        <h1>Save Sascha</h1>
+        <p id="story">Jest 27 lutego 2018 roku, godzina 23:50. Sascha za 10 minut skończy 18 lat, ale chce złamać zasady i wypić piwo przed swoimi urodzinami. Rozwiąż zagadki, aby zdobyć jego numer telefonu i go powstrzymać!</p>
+        <p id="timer">Time left: 10:00</p>
+        <p id="score">Score: 0</p>
+        <div id="puzzle-container"></div>
+        <p id="phone-number"><span>_</span> <span>_</span> <span>_</span> <span>_</span> <span>_</span> <span>_</span> <span>_</span> <span>_</span> <span>_</span></p>
+        <button id="startButton">Start Game</button>
+        <button id="hintButton" onclick="showHint()" style="display: none;">Podpowiedź</button>
+        <p id="hint" class="hint"></p>
+        <div id="loading" class="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Dzwonię do Sascha...</p>
+        </div>
+        <div id="phone-call" class="phone-call" style="display: none;">
+            <p>Sascha nie odbiera, muszę do niego pojechać...</p>
+            <button onclick="visitSascha()">Pojedź do Saschy</button>
+        </div>
+        <div id="visit-sascha" class="visit-sascha" style="display: none;">
+            <p>Wpisz adres zamieszkania Saschy:</p>
+            <input type="text" id="addressInput" placeholder="Sascha's address">
+            <button onclick="checkAddress()">Zatwierdź</button>
+            <p id="visit-timer">Time left: 30</p>
+        </div>
+        <div id="result" class="result" style="display: none;"></div>
+        <div id="choices" class="choices" style="display: none;"></div>
+        <div id="pin-stage" class="pin-stage" style="display: none;">
+            <p>Saschy nie ma w pokoju, ale jego komputer jest włączony.. Może spróbuję go odblokować? O nie jest zablokowany. Jakie on może mieć hasło...</p>
+            <div class="questions">
+                <p>1. Ile dziewczyn miał Sascha? <input type="text" id="answer1" maxlength="1" size="1"></p>
+                <p>2. Ostatnia cyfra roku w którym został wybudowany basen? <input type="text" id="answer2" maxlength="1" size="1"></p>
+                <p>3. Ostatnia cyfra roku kiedy Sascha poznał Tutsona? <input type="text" id="answer3" maxlength="1" size="1"></p>
+                <p>4. Ostatnia liczba sumy wszystkich piosenek ulubionego rapera Saschy? <input type="text" id="answer4" maxlength="1" size="1"></p>
+            </div>
+            <button onclick="checkPin()">Submit</button>
+            <div class="loading-bar" id="loadingBar" style="display: none;"></div>
+        </div>
+        <div id="narration" class="narration" style="display: none;">
+            <p>Udało się! Dobra to może sprawdzę z kim grał ostatnią giereczkę w lolu to chyba moja ostatnia szansa..</p>
+        </div>
+        <div id="login-stage" class="login-stage" style="display: none;">
+            <p>Zaloguj się do League of Legends</p>
+            <input type="text" id="usernameInput" placeholder="Username">
+            <input type="password" id="passwordInput" placeholder="Password">
+            <button onclick="checkLogin()">Log in</button>
+            <button onclick="showHintMessage()">Podpowiedź</button>
+            <p id="login-hint" class="hint"></p>
+            <div id="hint-list" class="hint-list"></div> <!-- Dodajemy div na listę podpowiedzi -->
+        </div>
+        <div id="new-narration" class="new-narration" style="display: none;">
+            <p>Dobra widzę, że grał z Niumanem.. O chryste zrobił 2/10 na malzaharze, nie dziwię się, że chce się najebać nie czekając na swoje urodziny.. Ale może chociaż Njuman mi pomoże...</p>
+        </div>
+        <div id="code-stage" class="code-stage" style="display: none;">
+            <p>Kurwa muszę się nauczyć zapisywać kontakty w telefonie... Jaki był jego numer telefonu?</p>
+            <input type="text" id="codeInput" placeholder="9-digit code">
+            <button onclick="checkCode()">Submit</button>
+        </div>
+        <div id="final-narration" class="final-narration" style="display: none;">
+            <p>Kurde wyładował mi się telefon... Co tu zrobić co tu zrobić... Chyba moją ostatnią szansą na skontaktowanie się z Niumanem jest Ania, ale jak to zrobić skoro wyładował mi sie telefon...</p>
+        </div>
+        <div id="vinted-narration" class="vinted-narration" style="display: none;">
+            <p>Dobra wiem, Ania ma przecież vinted, napisze do niej tam, na ten moment nie widzę innej możliwości...</p>
+        </div>
+        <div id="vinted-stage" class="vinted-stage" style="display: none;">
+            <p>Jezu Ania nie ma nigdzie linka do swojego vinted.. jaki ona miała tam nick...</p>
+            <input type="text" id="vintedInput" placeholder="Vinted username">
+            <button onclick="checkVinted()">Submit</button>
+        </div>
+        <div id="message-stage" class="message-stage" style="display: none;">
+            <p id="message1"></p>
+            <p id="message2"></p>
+            <p id="message3"></p>
+            <p id="message4"></p>
+            <p id="message5"></p>
+        </div>
+        <div id="street-stage" class="street-stage" style="display: none;">
+            <p>Jak dojechać od Saschy do Kuby? (duże litery oraz pełne nazwy ulic mają znaczenie)</p>
+            <input type="text" id="streetInput" placeholder="Nazwa ulicy">
+            <button onclick="checkStreet()">Submit</button>
+            <div id="streetList"></div>
+        </div>
+        <div id="final-stage" class="final-stage" style="display: none;">
+            <p>Dotarłeś do Kuby, otwierasz drzwi i widzisz w mieszkaniu Kubę, Nowaka oraz Sasche, który już trzyma piwo w ręce i zaraz się go napije!</p>
+            <button onclick="saveSascha()" class="green-button">Uratuj Saschę</button>
+            <button onclick="letHimDrink()" class="red-button">Pozwól mu napić się piwa</button>
+        </div>
+        <div id="ending-message" class="ending-message" style="display: none;"></div>
+        <div class="volume-controls">
+            <label for="volume">Music Volume:</label>
+            <input type="range" id="volume" name="volume" min="0" max="1" step="0.1" value="0.2" onchange="setVolume(this.value)">
+            <button onclick="toggleMute()">Mute</button>
+        </div>
+    </div>
+    <div id="notification" class="notification"></div>
+    <script src="script.js"></script>
+</body>
+</html>
