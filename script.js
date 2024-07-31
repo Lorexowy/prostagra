@@ -22,7 +22,7 @@ const puzzles = [
     "W którym roku Sascha założył facebooka?",
     "Jak ma na drugie imię Sascha?"
 ];
-const answers = ["Niebieski", "KR4K783", "2022", "120", "Aleksander", "432", "Wirus", "2014", "Jerzy"];
+const answers = ["niebieski", "kr4k783", "2022", "120", "aleksander", "432", "wirus", "2014", "jerzy"];
 const hints = [
     "Piękny jak kolor nieba",
     "Może powinieneś poszukać w galerii zdjęcia...",
